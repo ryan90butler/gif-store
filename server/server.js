@@ -53,6 +53,18 @@ passport.deserializeUser((id, done) => {
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.post(`/api/register`, (req,res) =>{
+  const {email, password, firstName, lastName} = req.body;
+
+  req.db.users.insert({email, password, f_name:firstName, l_name:lastName})
+  .then(user => {
+    req.session.user = user.id;
+    res.send({success: true, message: 'registered successfully'})
+  }).catch(err=>{
+    throw err;
+  })
+})
+
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=>{

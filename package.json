@@ -2,6 +2,8 @@
   "name": "my-store",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
+  "proxy": "http://localhost:8080/",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
