@@ -1,0 +1,1 @@
+`api.giphy.com/v1/gifs/trending?&api_key=${process.env.GIF_API}&limit=5`

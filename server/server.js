@@ -65,6 +65,8 @@ app.post(`/api/register`, (req,res) =>{
   })
 })
 
+app.get('')
+
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=>{
