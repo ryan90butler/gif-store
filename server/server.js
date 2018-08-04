@@ -4,6 +4,8 @@ const massive = require('massive');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+// const {getGif} = require('../server/service/giphyAPI');
+const {tenorGif} = require('../server/service/tenorApi');
 
 require('dotenv').config();
 
@@ -65,10 +67,17 @@ app.post(`/api/register`, (req,res) =>{
   })
 })
 
-app.get('')
+app.get(`/api/get-trending`, (req,res)=> {
+  tenorGif(process.env.TENOR_API)
+    .then(r => {
+      res.send(r)
+    })
+  .catch(err => {
+    throw err
+  })
+})
 
-
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 app.listen(port, ()=>{
   console.log(`server connected at port ${port}`)
 })

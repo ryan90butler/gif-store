@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-function getGif(api){
-  let gif = `api.giphy.com/v1/gifs/random?&api_key=${api}`
+function tenorGif(api){
+  let gif = `https://api.tenor.com/v1/trending?key=${api}&limit=20&local=en_US`
   return axios.get(gif)
     .then(r => {
       return r.data;
@@ -12,5 +12,5 @@ function getGif(api){
 }
 
 module.exports ={
-  getGif
+  tenorGif
 }
