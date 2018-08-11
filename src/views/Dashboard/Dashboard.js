@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import SearchBar from '../../components/SearchBar.js';
 
 class Dashboard extends Component {
   constructor() {
     super()
     this.state = {
-      gifs: []
+      gifs: [],
+      results: ''
     }
+    this.searchGif = this.searchGif.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount(){
@@ -18,17 +22,27 @@ class Dashboard extends Component {
         })
       })
   }
+
+  searchGif(){
+    axios.get(`/api/search/${this.state.search}`)
+    }
+
+    handleChange(e){
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
+
   render(){
     const gifs = this.state.gifs.map((gif,i) =>(
       <div className="trending-gifs" key={i}>
         <img src={gif.media[0].gif.url}/>
       </div>
     ))
-    debugger
-    console.log(this.state.gifs)
     return(
       <div>
-        Dashboard
+        Gif Store
+        <SearchBar/>
         {gifs}
         </div>
     )

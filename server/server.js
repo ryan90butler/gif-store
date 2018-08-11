@@ -4,8 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-// const {getGif} = require('../server/service/giphyAPI');
-const {tenorGif} = require('../server/service/tenorApi');
+const {tenorGif, tenorSearch} = require('../server/service/tenorApi');
 
 require('dotenv').config();
 
@@ -75,6 +74,13 @@ app.get(`/api/get-trending`, (req,res)=> {
   .catch(err => {
     throw err
   })
+})
+
+app.get('/api/search/:id', (req,res)=> {
+  tenorSearch(process.env.TENOR_API, req.params.id)
+    .then(r=>{
+      res.send(r.results).status(200)
+    })
 })
 
 const port = process.env.PORT || 5000;

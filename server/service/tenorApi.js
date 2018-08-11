@@ -10,7 +10,18 @@ function tenorGif(api){
       console.warn(error)
     });
 }
+function tenorSearch(api,search){
+  let gif = `https://api.tenor.com/v1/search?q=${search}&key=${api}&limit=20&local=en_US`
+  return axios.get(gif)
+    .then(r => {
+      return r.data;
+    })
+    .catch(error => {
+      console.warn(error)
+    });
+}
 
 module.exports ={
-  tenorGif
+  tenorGif,
+  tenorSearch
 }
