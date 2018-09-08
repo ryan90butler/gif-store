@@ -43,7 +43,9 @@ class Dashboard extends Component {
       <div>
         Gif Store
         <SearchBar/>
+        <div className="gif-container">
         {gifs}
+        </div>
         </div>
     )
   }

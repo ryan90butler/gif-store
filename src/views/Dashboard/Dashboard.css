@@ -1,0 +1,17 @@
+.trending-gifs {
+  padding: 3px;
+}
+
+.gif-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+img {
+  border: 1px white solid;
+  height: 200px;
+}
