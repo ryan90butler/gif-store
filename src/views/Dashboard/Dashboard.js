@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
 import SearchBar from '../../components/SearchBar.js';
+import Header from '../../components/header/Header.js'
 
 class Dashboard extends Component {
   constructor() {
@@ -41,7 +42,7 @@ class Dashboard extends Component {
     ))
     return(
       <div>
-        Gif Store
+        <Header/>
         <SearchBar/>
         <div className="gif-container">
         {gifs}

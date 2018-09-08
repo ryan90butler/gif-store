@@ -1,0 +1,8 @@
+.Header {
+  height: 80px;
+  width: 100%;
+}
+.Header p {
+  font-size: 45px;
+  margin: 0;
+}
