@@ -4,7 +4,6 @@ import { bindActionCreators} from 'redux';
 import { addToBasket } from '../../Redux/Actions/action';
 
 class AddToBasket extends Component{
-
   render(){
     const { addToBasket, productId } = this.props
     return(
