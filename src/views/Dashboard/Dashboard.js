@@ -37,7 +37,10 @@ class Dashboard extends Component {
   render(){
     const gifs = this.state.gifs.map((gif,i) =>(
       <div className="trending-gifs" key={i}>
+      <button>
         <img src={gif.media[0].gif.url}/>
+        <button>Details</button>
+        </button>
       </div>
     ))
     return(
