@@ -4,7 +4,6 @@ const massive = require('massive');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const {tenorGif, tenorSearch} = require('../server/service/tenorApi');
 
 require('dotenv').config();
 

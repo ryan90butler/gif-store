@@ -15,14 +15,14 @@ class Dashboard extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount(){
-    axios.get(`/api/get-trending`)
-      .then(r => {
-        this.setState({
-          gifs: r.data.results
-        })
-      })
-  }
+  // componentDidMount(){
+  //   axios.get(`/api/get-trending`)
+  //     .then(r => {
+  //       this.setState({
+  //         gifs: r.data.results
+  //       })
+  //     })
+  // }
 
   searchGif(){
     axios.get(`/api/search/${this.state.search}`)
