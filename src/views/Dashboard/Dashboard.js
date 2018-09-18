@@ -1,32 +1,25 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './Dashboard.css';
 import SearchBar from '../../components/SearchBar.js';
-import Header from '../../components/header/Header.js'
+import Header from '../../components/header/Header.js';
+import { connect } from 'react-redux';
+import { bindActionCreators} from 'redux';
+import {getProducts} from '../../Redux/Actions/Actions';
 
 class Dashboard extends Component {
   constructor() {
     super()
-    this.state = {
-      gifs: [],
-      results: ''
-    }
-    this.searchGif = this.searchGif.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // componentDidMount(){
-  //   axios.get(`/api/get-trending`)
-  //     .then(r => {
-  //       this.setState({
-  //         gifs: r.data.results
-  //       })
-  //     })
-  // }
-
-  searchGif(){
-    axios.get(`/api/search/${this.state.search}`)
-    }
+    componentDidMount(){
+      this.props.getProducts()
+      .then(()=>{
+          this.setState({
+              isLoaded:true,
+          });
+      })
+  }
 
     handleChange(e){
       this.setState({
@@ -35,12 +28,11 @@ class Dashboard extends Component {
     }
 
   render(){
-    const gifs = this.state.gifs.map((gif,i) =>(
+    console.log(this.props.products)
+    const items = this.props.products.map((items,i) =>(
       <div className="trending-gifs" key={i}>
-      <button>
-        <img src={gif.media[0].gif.url}/>
+        <img src={items.img}/>
         <button>Details</button>
-        </button>
       </div>
     ))
     return(
@@ -48,11 +40,18 @@ class Dashboard extends Component {
         <Header/>
         <SearchBar/>
         <div className="gif-container">
-        {gifs}
+        {items}
         </div>
         </div>
     )
   }
 }
 
-export default Dashboard;
+function mapStateToProps({products}){
+	return {products};
+}
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({getProducts}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

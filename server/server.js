@@ -12,14 +12,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 massive(process.env.CONNECTION_STRING)
-  .then(((db) => {
-    console.log('db connected');
-    app.set('db', db);
-  }))
-  .catch(err => {
-    console.log('db failed to connect')
-    console.error(err)
-  })
+    .then((db)=>{
+        console.log('the server is sawing logs');
+        app.set('db', db);
+    })
+    .catch(err => {
+        console.warn('Failed to connect:');
+        console.error(err);
+    });
 
 app.use(session({
   name: 'gif-store',
@@ -50,6 +50,7 @@ passport.deserializeUser((id, done) => {
     })
 });
 
+app.use(checkDb());
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -65,24 +66,29 @@ app.post(`/api/register`, (req,res) =>{
   })
 })
 
-app.get(`/api/get-trending`, (req,res)=> {
-  tenorGif(process.env.TENOR_API)
-    .then(r => {
-      res.send(r)
-    })
-  .catch(err => {
-    throw err
-  })
-})
-
-app.get('/api/search/:id', (req,res)=> {
-  tenorSearch(process.env.TENOR_API, req.params.id)
-    .then(r=>{
-      res.send(r.results).status(200)
-    })
-})
+app.get('/api/items', (req, res) => {
+  req.db.products.find()
+      .then(products => {
+          res.send(products);
+      })
+      .catch(err=>{throw err});
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, ()=>{
   console.log(`server connected at port ${port}`)
 })
+
+function checkDb() {
+  return (req, res, next) => {
+      const db = app.get('db');
+
+      if (db) {
+          req.db = db;
+          next();
+      }
+      else {
+          res.status(500).send({ message: 'this died' });
+      }
+  };
+}

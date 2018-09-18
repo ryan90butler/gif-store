@@ -4,6 +4,8 @@ import Login from './views/Login/Login';
 import Cart from './views/Cart/Cart';
 import Detail from './views/Detail/Detail';
 import Dashboard from './views/Dashboard/Dashboard';
+import { bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
 import './App.css';
 
 class App extends Component {
