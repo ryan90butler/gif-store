@@ -4,6 +4,21 @@ const massive = require('massive');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+// const Sequelize = require('sequelize');
+// var sequelize = new Sequelize('\', {
+//     dialect: 'postgres',
+//     dialectOptions: {
+//       ssl: true
+//     }
+//   });
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(err => {
+//     console.error('Unable to connect to the database:', err);
+//   });
 
 require('dotenv').config();
 
@@ -13,7 +28,7 @@ app.use(bodyParser.json());
 
 massive(process.env.CONNECTION_STRING)
     .then((db)=>{
-        console.log('the server is sawing logs');
+        console.log('DB Connected');
         app.set('db', db);
     })
     .catch(err => {
@@ -74,9 +89,9 @@ app.get('/api/items', (req, res) => {
       .catch(err=>{throw err});
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5050;
 app.listen(port, ()=>{
-  console.log(`server connected at port ${port}`)
+  console.log(`Server connected at port ${port}`)
 })
 
 function checkDb() {
@@ -88,7 +103,7 @@ function checkDb() {
           next();
       }
       else {
-          res.status(500).send({ message: 'this died' });
+          res.status(500).send({ message: 'DB died' });
       }
   };
 }

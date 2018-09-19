@@ -32,7 +32,6 @@ class Dashboard extends Component {
     const items = this.props.products.map((items,i) =>(
       <div className="trending-gifs" key={i}>
         <img src={items.img}/>
-        <button>Details</button>
       </div>
     ))
     return(
