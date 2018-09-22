@@ -3,9 +3,10 @@ import './Dashboard.css';
 import SearchBar from '../../components/SearchBar.js';
 import Header from '../../components/header/Header.js';
 import { connect } from 'react-redux';
-import{ Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getProducts, getProduct } from '../../Redux/Actions/Actions';
+import AddToBasket from '../../components/Common/AddToBasket';
 
 class Dashboard extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class Dashboard extends Component {
         <p className="price">${items.price}</p>
         </div>
       </Link>
+      <AddToBasket product_Id = {items.product_id} />
       </div>
     ))
     return(

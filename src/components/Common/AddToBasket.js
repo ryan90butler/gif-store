@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import { addToBasket } from '../../Redux/Actions/action';
+import { addToBasket } from '../../Redux/Actions/Actions';
 
 class AddToBasket extends Component{
   render(){
-    const { addToBasket, productId } = this.props
+    const { addToBasket, product_Id } = this.props
     return(
-      <button className="addToBasket-Button" onClick={() => addToBasket(productId)}>ADD TO BASKET</button>
+      <button className="addToBasket-Button" onClick={() => addToBasket(product_Id)}>ADD TO BASKET</button>
     )
   }
 }
