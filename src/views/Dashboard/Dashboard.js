@@ -3,8 +3,9 @@ import './Dashboard.css';
 import SearchBar from '../../components/SearchBar.js';
 import Header from '../../components/header/Header.js';
 import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
-import {getProducts} from '../../Redux/Actions/Actions';
+import{ Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { getProducts } from '../../Redux/Actions/Actions';
 
 class Dashboard extends Component {
   constructor() {
@@ -29,8 +30,11 @@ class Dashboard extends Component {
 
   render(){
     console.log(this.props.products)
-    const items = this.props.products.map((items,i) =>(
-      <div className="trending-gifs" key={i}>
+    const items = this.props.products.map((items) =>(
+      <div className="trending-gifs" key={items.product_id}>
+      <Link to="/Detail">
+        <div onClick={()=>{}}></div>
+      </Link>
         <img src={items.img}/>
       </div>
     ))

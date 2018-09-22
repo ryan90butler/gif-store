@@ -8,3 +8,7 @@ export function getProducts(){
     payload
   }
 }
+
+export function getProduct(){
+  const payload = axios.get()
+}
