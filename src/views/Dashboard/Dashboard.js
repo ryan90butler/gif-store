@@ -5,7 +5,7 @@ import Header from '../../components/header/Header.js';
 import { connect } from 'react-redux';
 import{ Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { getProducts } from '../../Redux/Actions/Actions';
+import { getProducts, getProduct } from '../../Redux/Actions/Actions';
 
 class Dashboard extends Component {
   constructor() {
@@ -29,20 +29,22 @@ class Dashboard extends Component {
     }
 
   render(){
-    console.log(this.props.products)
     const items = this.props.products.map((items) =>(
-      <div className="trending-gifs" key={items.product_id}>
-      <Link to="/Detail">
-        <div onClick={()=>{}}></div>
-      </Link>
+      <div className="items" key={items.product_id}>
+      <Link to="/detail">
+        <div onClick={()=>{this.props.getProduct(items)}}>
+        <p className="name">{items.name}</p>
         <img src={items.img}/>
+        <p className="price">${items.price}</p>
+        </div>
+      </Link>
       </div>
     ))
     return(
       <div>
         <Header/>
         <SearchBar/>
-        <div className="gif-container">
+        <div className="item-container">
         {items}
         </div>
         </div>
@@ -54,7 +56,7 @@ function mapStateToProps({products}){
 	return {products};
 }
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({getProducts}, dispatch);
+	return bindActionCreators({getProducts, getProduct}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

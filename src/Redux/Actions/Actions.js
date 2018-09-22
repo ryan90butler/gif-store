@@ -1,4 +1,4 @@
-import {GET_PRODUCTS} from '../Actions/Constraints';
+import {GET_PRODUCTS, GET_PRODUCT} from '../Actions/Constraints';
 import axios from 'axios';
 
 export function getProducts(){
@@ -9,6 +9,10 @@ export function getProducts(){
   }
 }
 
-export function getProduct(){
-  const payload = axios.get()
+export function getProduct(item){
+  localStorage.setItem("lastProduct", JSON.stringify(item));
+  return {
+    type: GET_PRODUCT,
+    payload: item
+  }
 }
