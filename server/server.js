@@ -4,21 +4,6 @@ const massive = require('massive');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-// const Sequelize = require('sequelize');
-// var sequelize = new Sequelize('\', {
-//     dialect: 'postgres',
-//     dialectOptions: {
-//       ssl: true
-//     }
-//   });
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log('Connection has been established successfully.');
-//   })
-//   .catch(err => {
-//     console.error('Unable to connect to the database:', err);
-//   });
 
 require('dotenv').config();
 
@@ -40,7 +25,7 @@ app.use(session({
   name: 'gif-store',
   secret: process.env.SESSION_SECRET,
   cookie: {
-      expires:  5 * 24 * 60 * 60 *1000,
+      expires: 5 * 24 * 60 * 60 *1000,
   },
   saveUninitialized: false,
   rolling: true,

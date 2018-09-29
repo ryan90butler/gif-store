@@ -21,7 +21,7 @@ class Dashboard extends Component {
               isLoaded:true,
           });
       })
-  }
+    }
 
     handleChange(e){
       this.setState({
